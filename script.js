@@ -87,3 +87,11 @@ const renderNotFound = () => {
     pokeStats.innerHTML = '';
     pokeId.textContent = '';
 }
+
+const getRandomPokemon = () => {
+    const randomId = Math.floor(Math.random() * 1025) + 1;
+    fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`)
+        .then(data => data.json())
+        .then(response => renderPokemonData(response))
+        .catch(err => renderNotFound());
+}
